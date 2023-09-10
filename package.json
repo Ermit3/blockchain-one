@@ -1,0 +1,19 @@
+{
+  "name": "cryptochain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "Ermit3"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4"
+  },
+  "dependencies": {
+    "hex-to-binary": "^1.0.1"
+  }
+}
