@@ -1,14 +1,15 @@
-const Blockchain = require("./blockchain");
+const Blockchain = require("../blockchain");
 
 const blockchain = new Blockchain();
-
+// add the first block to the chain
 blockchain.addBlock({ data: ["initial", "double penguin"] });
 console.log("first block", blockchain.chain[blockchain.chain.length - 1]);
 
 let prevTimestamp, nextTimestamp, nextBlock, timeDiff, average;
-
+// an array to store the time differences between blocks
 const times = [];
 
+// mine 10,000 blocks
 for (let i = 0; i < 10000; i++) {
   prevTimestamp = blockchain.chain[blockchain.chain.length - 1].timestamp;
 

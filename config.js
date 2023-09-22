@@ -12,4 +12,7 @@ const GENESIS_DATA = {
   data: [],
 };
 
-module.exports = { GENESIS_DATA, MINE_RATE };
+const STARTING_BALANCE = 10;
+const MAX_DECIMAL = 8;
+
+module.exports = { GENESIS_DATA, MINE_RATE, STARTING_BALANCE, MAX_DECIMAL };

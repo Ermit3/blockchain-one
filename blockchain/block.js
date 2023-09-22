@@ -1,8 +1,11 @@
 const hexToBinary = require("hex-to-binary");
-const { GENESIS_DATA, MINE_RATE } = require("./config");
-const cryptoHash = require("./crypto-hash");
+const { GENESIS_DATA, MINE_RATE } = require("../config");
+const { cryptoHash } = require("../utils");
 
-// create a block class
+/**
+ * @class Block
+ * @description Create a block with a timestamp, last hash, hash, data, nonce, and difficulty.
+ */
 class Block {
   constructor({ timestamp, lastHash, hash, data, nonce, difficulty }) {
     this.timestamp = timestamp;
@@ -13,12 +16,21 @@ class Block {
     this.hash = hash;
   }
 
-  // function to create the genesis block (the first block in the chain)
+  /**
+   * @function genesis
+   * @description Create the genesis block.
+   * @returns {String}
+   */
   static genesis() {
     return new this(GENESIS_DATA);
   }
 
-  // function to mine a block
+  /**
+   * @function hash
+   * @description Create a SHA-256 hash based on the inputs. The inputs are sorted to ensure the same hash is generated regardless of the order of the inputs. The hash is created using the cryptoHash function.
+   * @example hash(timestamp, lastHash, data, nonce, difficulty) => "a1b2c3"
+   * @returns {String}
+   */
   static mineBlock({ lastBlock, data }) {
     const lastHash = lastBlock.hash;
     let hash, timestamp;
@@ -41,7 +53,12 @@ class Block {
     return new this({ timestamp, lastHash, data, difficulty, nonce, hash });
   }
 
-  // function to adjust the difficulty of the block
+  /**
+   * @function adjustDifficulty
+   * @description Adjust the difficulty of the block based on the time it took to mine the last block and the difficulty of the last block.
+   * @example adjustDifficulty({ originalBlock, timestamp }) => 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+   * @returns {Number}
+   */
   static adjustDifficulty({ originalBlock, timestamp }) {
     const { difficulty } = originalBlock;
 
